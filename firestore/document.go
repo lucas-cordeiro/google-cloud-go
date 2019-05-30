@@ -115,6 +115,10 @@ func (d *DocumentSnapshot) DataTo(p interface{}) error {
 	return setFromProtoValue(p, &pb.Value{ValueType: &pb.Value_MapValue{&pb.MapValue{Fields: d.proto.Fields}}}, d.c)
 }
 
+func DataTo(c *Client, d pb.Document, p interface{}) error {
+	return setFromProtoValue(p, &pb.Value{ValueType: &pb.Value_MapValue{&pb.MapValue{Fields: d.Fields}}}, c)
+}
+
 // DataAt returns the data value denoted by path.
 //
 // The path argument can be a single field or a dot-separated sequence of
