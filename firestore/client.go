@@ -133,6 +133,18 @@ func (c *Client) Doc(path string) *DocumentRef {
 	return doc
 }
 
+func (c *Client) NewDocumentSnapshot(proto *pb.Document) (*DocumentSnapshot, error) {
+	docRef, err := pathToDoc(proto.Name, client)
+	if err != nil {
+		return nil, err
+	}
+	doc, err := newDocumentSnapshot(docRef, res.Document, c, proto.UpdateTime)
+	if err != nil {
+		return nil, err
+	}
+	return doc, nil
+}
+
 // CollectionGroup creates a reference to a group of collections that include
 // the given ID, regardless of parent document.
 //
