@@ -134,11 +134,11 @@ func (c *Client) Doc(path string) *DocumentRef {
 }
 
 func (c *Client) NewDocumentSnapshot(proto *pb.Document) (*DocumentSnapshot, error) {
-	docRef, err := pathToDoc(proto.Name, client)
+	docRef, err := pathToDoc(proto.Name, c)
 	if err != nil {
 		return nil, err
 	}
-	doc, err := newDocumentSnapshot(docRef, res.Document, c, proto.UpdateTime)
+	doc, err := newDocumentSnapshot(docRef, proto, c, proto.UpdateTime)
 	if err != nil {
 		return nil, err
 	}
