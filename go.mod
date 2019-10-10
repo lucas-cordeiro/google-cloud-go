@@ -1,4 +1,4 @@
-module cloud.google.com/go
+module github.com/lucas-cordeiro/google-cloud-go
 
 go 1.9
 
